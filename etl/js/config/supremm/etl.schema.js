@@ -22,7 +22,7 @@ function getIf(condition, _then, _else) {
 
 function getDistributionSQLCaseStatement(stat, _max, s1, e1, s2, e2) {
     return "case when (" + s1 + " between " + s2 + " and " + e2 + " and "
-                + e1 + " between " + s2 + " and " + e2 + " ) "
+    		+ e1 + " between " + s2 + " and " + e2 + " ) "
                 + " then " + stat + " "
             + " when (" + s1 + " < " + s2 + " and "
                 + e1 + " between " + s2 + " and " + e2 + " ) "

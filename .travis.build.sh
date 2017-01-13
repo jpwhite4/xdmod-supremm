@@ -107,7 +107,7 @@ if [ "$TEST_SUITE" = "syntax" ]; then
         fi
     done
 elif [ "$TEST_SUITE" = "style" ]; then
-    npm install jpwhiet4/lint-diff
+    npm install https://github.com/jpwhite4/lint-diff/tarball/master
 
     for file in "${php_files_changed[@]}"; do
         phpcs "$file" || phpcs -n "$file" > /dev/null 2>&1
