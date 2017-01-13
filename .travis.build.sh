@@ -107,6 +107,8 @@ if [ "$TEST_SUITE" = "syntax" ]; then
         fi
     done
 elif [ "$TEST_SUITE" = "style" ]; then
+    npm install jpwhiet4/lint-diff
+
     for file in "${php_files_changed[@]}"; do
         phpcs "$file" || phpcs -n "$file" > /dev/null 2>&1
         if [ $? != 0 ]; then
@@ -117,17 +119,13 @@ elif [ "$TEST_SUITE" = "style" ]; then
 
         echo "commit_range_start="$commit_range_start
         eslint "$file"
-        md5sum $file
-        git status
-        git log $file
-        git status $file
-
-        git checkout $commit_range_start $file
-        md5sum $file
-        git checkout FETCH_HEAD $file
-        md5sum $file
         if [ $? != 0 ]; then
-            build_exit_value=2
+            git show $commit_range_start:$file | eslint --stdin --stdin-filename $file -f json > $file.lint.orig.json
+            eslint $file -f json > $file.lint.new.json
+            ./node_modules/.bin/lint-diff $file.lint.orig.json $file.lint.new.json
+            if [ $? != 0 ]; then
+                build_exit_value=2
+            fi
         fi
     done
 elif [ "$TEST_SUITE" = "build" ]; then
