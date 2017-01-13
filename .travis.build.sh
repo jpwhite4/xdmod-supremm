@@ -110,19 +110,22 @@ elif [ "$TEST_SUITE" = "style" ]; then
     npm install https://github.com/jpwhite4/lint-diff/tarball/master
 
     for file in "${php_files_changed[@]}"; do
-        phpcs "$file" || phpcs -n "$file" > /dev/null 2>&1
+        phpcs "$file" 
         if [ $? != 0 ]; then
-            build_exit_value=2
+            git show "$commit_range_start:$file" | phpcs --stdin-path="$file" --report=json > "$file.lint.orig.json"
+            phpcs $file --report=json > "$file.lint.new.json"
+            ./node_modules/.bin/lint-diff "$file.lint.orig.json" "$file.lint.new.json"
+            if [ $? != 0 ]; then
+                build_exit_value=2
+            fi
         fi
     done
     for file in "${js_files_changed[@]}"; do
-
-        echo "commit_range_start="$commit_range_start
         eslint "$file"
         if [ $? != 0 ]; then
-            git show $commit_range_start:$file | eslint --stdin --stdin-filename $file -f json > $file.lint.orig.json
-            eslint $file -f json > $file.lint.new.json
-            ./node_modules/.bin/lint-diff $file.lint.orig.json $file.lint.new.json
+            git show "$commit_range_start:$file" | eslint --stdin --stdin-filename "$file" -f json > "$file.lint.orig.json"
+            eslint $file -f json > "$file.lint.new.json"
+            ./node_modules/.bin/lint-diff "$file.lint.orig.json" "$file.lint.new.json"
             if [ $? != 0 ]; then
                 build_exit_value=2
             fi

@@ -146,7 +146,8 @@ class JobMetadata
     public function getJobExecutableInfo($user, $jobid)
     {
         $job = $this->lookupJob($user, $jobid);
-        if ($job == null) {
+        if ($job == null) 
+        {
             return null;
         }
         $jobdata = $this->getjobdata($job['resource_id'], $job['local_job_id'], $job['end_time_ts']);
