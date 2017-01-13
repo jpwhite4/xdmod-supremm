@@ -99,7 +99,6 @@ class JobDataset extends \DataWarehouse\Query\RawQuery
                 }
             }
         } elseif ($stat == "analytics") {
-
             $joberrors = new Table(new Schema('modw_supremm'), 'job_errors', 'je');
             $this->addTable($joberrors);
 
