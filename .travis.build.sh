@@ -114,7 +114,14 @@ elif [ "$TEST_SUITE" = "style" ]; then
         fi
     done
     for file in "${js_files_changed[@]}"; do
+
+        echo "commit_range_start="$commit_range_start
         eslint "$file"
+        md5sum $file
+        git checkout $commit_range_start $file
+        md5sum $file
+        git checkout FETCH_HEAD $file
+        md5sum $file
         if [ $? != 0 ]; then
             build_exit_value=2
         fi
