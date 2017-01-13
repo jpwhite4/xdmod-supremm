@@ -118,6 +118,10 @@ elif [ "$TEST_SUITE" = "style" ]; then
         echo "commit_range_start="$commit_range_start
         eslint "$file"
         md5sum $file
+        git status
+        git log $file
+        git status $file
+
         git checkout $commit_range_start $file
         md5sum $file
         git checkout FETCH_HEAD $file
