@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-find ~/.phpenv -name xdebug.ini | xargs rm
-
 function install_pear_dependencies() {
     pear install Log
 }
+
+echo "travis_fold:start:DEPDOWNLOAD folding starts"
 
 # If PHP 5.3.3 is installed, SSL/TLS isn't available to PHP.
 # Use a newer version of PHP for installing Composer dependencies.
@@ -46,3 +46,5 @@ source ~/.nvm/nvm.sh
 nvm install "$NODE_VERSION"
 nvm use "$NODE_VERSION"
 npm install
+
+echo "travis_fold:start:DEPDOWNLOAD folding ends"
