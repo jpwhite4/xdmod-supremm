@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+rm -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+
 function install_pear_dependencies() {
     pear install Log
 }

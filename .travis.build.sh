@@ -9,6 +9,8 @@ nvm use "$NODE_VERSION"
 module_dir="supremm"
 module_name="SUPReMM"
 
+find ~/.phpenv -name \*.ini
+
 # Fix for Travis not specifying a range if testing the first commit of
 # a new branch on push
 if [ -z "$TRAVIS_COMMIT_RANGE" ]; then
