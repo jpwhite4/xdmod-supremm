@@ -69,6 +69,7 @@ if [ "$TEST_SUITE" = "build" ] || [ "$TEST_SUITE" = "unit" ]; then
     fi
 
     xdmod_branch="$TRAVIS_BRANCH"
+    xdmod_branch="xdmod6.6"
     echo "Cloning Open XDMoD branch '$xdmod_branch'"
     git clone --depth=1 --branch="$xdmod_branch" https://github.com/ubccr/xdmod.git ../xdmod
 

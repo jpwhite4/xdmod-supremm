@@ -26,5 +26,8 @@ cache:
 # Delegate the installation step to the custom Travis installation script
 install: ./.travis.install.sh
 
+before_script:
+    - rm -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+
 # Delegate the build step to the custom Travis build script
 script: ./.travis.build.sh
