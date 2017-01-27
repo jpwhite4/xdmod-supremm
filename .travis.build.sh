@@ -9,7 +9,7 @@ nvm use "$NODE_VERSION"
 module_dir="supremm"
 module_name="SUPReMM"
 
-find ~/.phpenv -name \*.ini
+find ~/.phpenv -name \*.ini | xargs ls -l
 echo ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
 rm ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
 
