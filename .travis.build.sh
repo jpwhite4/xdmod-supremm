@@ -10,6 +10,8 @@ module_dir="supremm"
 module_name="SUPReMM"
 
 find ~/.phpenv -name \*.ini
+echo ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+rm ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
 
 # Fix for Travis not specifying a range if testing the first commit of
 # a new branch on push
