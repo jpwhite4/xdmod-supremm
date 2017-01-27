@@ -9,10 +9,6 @@ nvm use "$NODE_VERSION"
 module_dir="supremm"
 module_name="SUPReMM"
 
-find ~/.phpenv -name \*.ini | xargs ls -l
-echo ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
-rm ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
-
 # Fix for Travis not specifying a range if testing the first commit of
 # a new branch on push
 if [ -z "$TRAVIS_COMMIT_RANGE" ]; then
@@ -66,7 +62,7 @@ fi
 
 # Build tests require the corresponding version of Open XDMoD.
 if [ "$TEST_SUITE" = "build" ] || [ "$TEST_SUITE" = "unit" ]; then
-    echo "travis_fold:start:SCRIPT folding starts"
+    echo "travis_fold:start:XDMOD_INSTALL folding starts"
     # If present, move Travis cache dirs out of the way.
     xdmod_cache_exists="false"; [ -e ../xdmod ] && xdmod_cache_exists="true"
     if "$xdmod_cache_exists"; then
@@ -89,7 +85,7 @@ if [ "$TEST_SUITE" = "build" ] || [ "$TEST_SUITE" = "unit" ]; then
 
     # Create a symlink from Open XDMoD to this module.
     ln -s "$(pwd)" "../xdmod/open_xdmod/modules/$module_dir"
-    echo "travis_fold:end:SCRIPT folding ends"
+    echo "travis_fold:end:XDMOD_INSTALL folding ends"
 fi
 
 # Perform a test set based on the value of $TEST_SUITE.
