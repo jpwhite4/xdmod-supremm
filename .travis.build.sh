@@ -66,7 +66,7 @@ fi
 
 # Build tests require the corresponding version of Open XDMoD.
 if [ "$TEST_SUITE" = "build" ] || [ "$TEST_SUITE" = "unit" ]; then
-    echo "travis_fold:start:SCRIPT folding ends"
+    echo "travis_fold:start:SCRIPT folding starts"
     # If present, move Travis cache dirs out of the way.
     xdmod_cache_exists="false"; [ -e ../xdmod ] && xdmod_cache_exists="true"
     if "$xdmod_cache_exists"; then
@@ -89,7 +89,7 @@ if [ "$TEST_SUITE" = "build" ] || [ "$TEST_SUITE" = "unit" ]; then
 
     # Create a symlink from Open XDMoD to this module.
     ln -s "$(pwd)" "../xdmod/open_xdmod/modules/$module_dir"
-    echo "travis_fold:start:SCRIPT folding ends"
+    echo "travis_fold:end:SCRIPT folding ends"
 fi
 
 # Perform a test set based on the value of $TEST_SUITE.
