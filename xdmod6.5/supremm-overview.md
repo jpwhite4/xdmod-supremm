@@ -1,5 +1,7 @@
 ---
 title: SUPReMM Overview
+redirect_from:
+    - ""
 ---
 
 An available Open XDMoD enhancement is SUPReMM (integrated HPC systems usage
