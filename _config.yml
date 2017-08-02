@@ -35,12 +35,14 @@ defaults:
         values:
             layout: "page"
             menu_markdown: "xdmod7.0/menu.md"
+    -
         scope:
             path: "xdmod6.6"
             type: "pages"
         values:
             layout: "page"
             menu_markdown: "xdmod6.6/menu.md"
+    -
         scope:
             path: "xdmod6.5"
             type: "pages"
