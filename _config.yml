@@ -21,7 +21,8 @@ description: >
   hardware counters to collect a range of performance information, including
   memory usage, filesystem usage, interconnect fabric traffic, and CPU
   performance.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/xdmod-supremm" # the subpath of your site, e.g. /blog
+url: "https://jpwhite4.github.io" # the base hostname & protocol for your site
 github_username: ubccr
 github_url: https://github.com/ubccr/xdmod-supremm
 xdmod_module_name: SUPReMM
