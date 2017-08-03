@@ -27,8 +27,10 @@ github_username: ubccr
 github_url: https://github.com/ubccr/xdmod-supremm
 xdmod_module_name: SUPReMM
 version_list:
+    - "7.0"
     - "6.6"
     - "6.5"
+
 defaults:
     -
         scope:
@@ -58,3 +60,7 @@ defaults:
 # Build settings
 markdown: kramdown
 theme_subdir: "/xdmod-jekyll-theme"
+gems:
+  - jekyll-redirect-from
+whitelist:
+  - jekyll-redirect-from
