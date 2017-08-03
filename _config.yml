@@ -35,6 +35,9 @@ defaults:
         values:
             layout: "page"
             version: "7.0"
+            version_list:
+                - 6.6
+                - 6.5
             menu_markdown: "xdmod7.0/menu.md"
     -
         scope:
@@ -43,6 +46,9 @@ defaults:
         values:
             layout: "page"
             version: "6.6"
+            version_list:
+                - 6.6
+                - 6.5
             menu_markdown: "xdmod6.6/menu.md"
     -
         scope:
@@ -51,6 +57,9 @@ defaults:
         values:
             layout: "page"
             version: "6.5"
+            version_list:
+                - 6.6
+                - 6.5
             menu_markdown: "xdmod6.5/menu.md"
 
 # Build settings
