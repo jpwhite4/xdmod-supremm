@@ -26,41 +26,34 @@ url: "https://jpwhite4.github.io" # the base hostname & protocol for your site
 github_username: ubccr
 github_url: https://github.com/ubccr/xdmod-supremm
 xdmod_module_name: SUPReMM
-
+version_list:
+    - 6.6
+    - 6.5
 defaults:
     -
         scope:
-            path: "xdmod7.0"
+            path: "7.0"
             type: "pages"
         values:
             layout: "page"
             version: "7.0"
-            version_list:
-                - 6.6
-                - 6.5
-            menu_markdown: "xdmod7.0/menu.md"
+            menu_markdown: "7.0/menu.md"
     -
         scope:
-            path: "xdmod6.6"
+            path: "6.6"
             type: "pages"
         values:
             layout: "page"
             version: "6.6"
-            version_list:
-                - 6.6
-                - 6.5
-            menu_markdown: "xdmod6.6/menu.md"
+            menu_markdown: "6.6/menu.md"
     -
         scope:
-            path: "xdmod6.5"
+            path: "6.5"
             type: "pages"
         values:
             layout: "page"
             version: "6.5"
-            version_list:
-                - 6.6
-                - 6.5
-            menu_markdown: "xdmod6.5/menu.md"
+            menu_markdown: "6.5/menu.md"
 
 # Build settings
 markdown: kramdown
