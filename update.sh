@@ -10,6 +10,6 @@ do
     do
         outfile=$(echo $file | awk 'BEGIN{FS="/"} { for(i=2; i < NF; i++) { printf "%s/", $i } print "'$version'/" $NF}')
         mkdir -p $(dirname $outfile)
-        git show refs/remotes/origin/$branch:$file | sed '/^redirect_from:$/{N;s/^redirect_from:\n    - ""/redirect_from:\n    - "'$version'"/}'  > $outfile
+        git show refs/remotes/origin/$branch:$file | sed '/^redirect_from:$/{N;s/^redirect_from:\n    - ""/redirect_from:\n    - \/'$version'/}'  > $outfile
     done
 done
