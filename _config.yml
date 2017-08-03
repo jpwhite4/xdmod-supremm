@@ -34,7 +34,7 @@ defaults:
             type: "pages"
         values:
             layout: "page"
-            title: "Open XDMoD SUPReMM Module Version 7.0"
+            version: "7.0"
             menu_markdown: "xdmod7.0/menu.md"
     -
         scope:
@@ -42,7 +42,7 @@ defaults:
             type: "pages"
         values:
             layout: "page"
-            title: "Open XDMoD SUPReMM Module Version 6.6"
+            version: "6.6"
             menu_markdown: "xdmod6.6/menu.md"
     -
         scope:
@@ -50,7 +50,7 @@ defaults:
             type: "pages"
         values:
             layout: "page"
-            title: "Open XDMoD SUPReMM Module Version 6.5"
+            version: "6.5"
             menu_markdown: "xdmod6.5/menu.md"
 
 # Build settings
