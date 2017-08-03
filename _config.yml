@@ -27,8 +27,8 @@ github_username: ubccr
 github_url: https://github.com/ubccr/xdmod-supremm
 xdmod_module_name: SUPReMM
 version_list:
-    - 6.6
-    - 6.5
+    - "6.6"
+    - "6.5"
 defaults:
     -
         scope:
