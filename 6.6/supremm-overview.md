@@ -2,7 +2,6 @@
 title: SUPReMM Overview
 redirect_from:
     - "/6.6/"
-    - "/xdmod-supremm/6.6/"
     - ""
 ---
 
