@@ -4,9 +4,10 @@
 set -e
 
 ENDPOINT=https://api.github.com/repos/ubccr/xdmod-supremm
+BRANCHFILTER='xdmod[0-9]\.[0-9]'
 
-branches=$(curl -s $ENDPOINT/releases | jq .[].target_commitish | grep -o 'xdmod[0-9]\.[0-9]')
-latest=$(curl -s $ENDPOINT/releases/latest | jq .target_commitish | grep -o 'xdmod[0-9]\.[0-9]')
+branches=$(curl -s $ENDPOINT/releases | jq .[].target_commitish | grep -o $BRANCHFILTER)
+latest=$(curl -s $ENDPOINT/releases/latest | jq .target_commitish | grep -o $BRANCHFILTER)
 
 for branch in $branches;
 do
