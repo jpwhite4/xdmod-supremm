@@ -20,6 +20,14 @@ do
         sedscript='/^redirect_from:$/{N;s/^redirect_from:\n    - ""/redirect_from:\n    - "\/'$version'\/"/}'
         if [ "$branch" = "$latest" ]; then
             sedscript='/^redirect_from:$/a\    - "\/'$version'\/"'
+            basefile=$(basename $outfile .md)
+            if [ "docs/${basefile}.md" = "$file" ]; then
+                cat > ${basefile}.md << EOF
+---
+redirect_to: /$version/${basefile}.html
+---
+EOF
+            fi
         fi
         git show refs/remotes/origin/$branch:$file | sed "$sedscript" > $outfile
     done
