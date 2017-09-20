@@ -1,3 +1,3 @@
 ---
-redirect_to: /7.0/supremm_overview.html
+redirect_to: /7.0/supremm-overview.html
 ---
