@@ -2,7 +2,6 @@
 title: SUPReMM Overview
 redirect_from:
     - "/7.0/"
-    - "/supremm-overview.html"
     - ""
 ---
 
