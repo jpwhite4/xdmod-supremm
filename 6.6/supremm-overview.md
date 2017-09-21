@@ -2,6 +2,7 @@
 title: SUPReMM Overview
 redirect_from:
     - "/6.6/"
+    - ""
 ---
 
 An available Open XDMoD enhancement is SUPReMM (integrated HPC systems usage

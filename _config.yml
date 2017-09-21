@@ -13,19 +13,18 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Open XDMoD SUPReMM Module
+title: Open XDMoD
 email: ccr-xdmod-help@buffalo.edu
 description: >
-  An available Open XDMoD enhancement is SUPReMM (integrated HPC systems usage
-  and performance of resources monitoring and modeling), which queries system
-  hardware counters to collect a range of performance information, including
-  memory usage, filesystem usage, interconnect fabric traffic, and CPU
-  performance.
-baseurl: "/xdmod-supremm" # the subpath of your site, e.g. /blog
-url: "https://jpwhite4.github.io" # the base hostname & protocol for your site
+  XDMoD (XD Metrics on Demand) is an NSF-funded open source tool designed
+  to audit and facilitate the utilization of the XSEDE cyberinfrastructure
+  by providing a wide range of metrics on XSEDE resources, including
+  resource utilization, resource performance, and impact on scholarship
+  and research.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://open.xdmod.org" # the base hostname & protocol for your site
 github_username: ubccr
-github_url: https://github.com/ubccr/xdmod-supremm
-xdmod_module_name: SUPReMM
+github_url: https://github.com/ubccr/xdmod
 latest_version: "7.0"
 version_list:
     - "7.0"
