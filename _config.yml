@@ -21,7 +21,7 @@ description: >
   by providing a wide range of metrics on XSEDE resources, including
   resource utilization, resource performance, and impact on scholarship
   and research.
-baseurl: "xdmod-supremm" # the subpath of your site, e.g. /blog
+baseurl: "/xdmod-supremm" # the subpath of your site, e.g. /blog
 url: "https://jpwhite4.github.io" # the base hostname & protocol for your site
 github_username: jpwhite4
 github_url: https://github.com/jpwhite4/xdmod-supremm
