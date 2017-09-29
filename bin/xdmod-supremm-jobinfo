@@ -2,7 +2,7 @@
 <?php
 /* Helper script that retrieves information about jobs in the database
  *
- * Version 0.0.1
+ * Version 0.0.2
  */
 require_once '/usr/share/xdmod/configuration/linker.php';
 
@@ -53,7 +53,7 @@ function printjobdata($resource, $localjobid)
 
     $query = "
 SELECT 
-    job_id, FROM_UNIXTIME(start_time_ts) AS start, FROM_UNIXTIME(end_time_ts) AS end
+    job_id, FROM_UNIXTIME(start_time_ts) AS start, FROM_UNIXTIME(end_time_ts) AS end, jf.resource_id, jf.local_jobid, jf.end_time_ts
 FROM 
     jobfact jf, resourcefact r
 WHERE
@@ -89,6 +89,44 @@ WHERE
             printarchiveinfo($dwDb, $job);
         }
         print "\n\n";
+
+        $sjquery = "
+SELECT
+    jf.resource_id, jf.local_job_id, jf.end_time_ts, jf._id as job_id
+FROM
+    modw_supremm.job jf
+WHERE
+    jf.resource_id = ? AND jf.local_job_id = ? AND jf.end_time_ts = ?";
+
+        $result = $dwDb->query($sjquery, array($job['resource_id'], $job['local_jobid'], $job['end_time_ts']));
+        if (count($result) === 0) {
+            print "No records for this job in the modw_supremm database\n";
+        } else {
+            print "Data from modw_supremm:\n";
+            foreach($result as $row) {
+                print "    " . $row['resource_id'] . " ". $row['local_job_id'] . " " . $row['end_time_ts'] . "\n";
+            }
+        }
+
+        $supremmDbInterface = new \DataWarehouse\Query\SUPREMM\SupremmDbInterface();
+        $resconf = $supremmDbInterface->getResourceConfig($job['resource_id']);
+        $collection = $resconf['handle']->selectCollection($resconf['collection']);
+        $query = array( "_id" => new \MongoRegex("/^${job['local_jobid']}-.*${job['end_time_ts']}/") );
+        $doc = $collection->findOne($query);
+        if ( $doc === null) {
+            print "No document found for this job in mongo\n";
+        } else {
+            print "Summary in mongo: " . implode(", ", array_keys($doc)) . "\n";
+        }
+
+        $collection = $resconf['handle']->selectCollection('timeseries-'.$resconf['collection']);
+        $query = array( "_id" => new \MongoRegex("/^${job['local_jobid']}-.*${job['end_time_ts']}/") );
+        $doc = $collection->findOne($query);
+        if ( $doc === null) {
+            print "No timeseries document found for this job in mongo\n";
+        } else {
+            print "Summary in mongo: " . implode(", ", array_keys($doc)) . "\n";
+        }
     }
 }
 
