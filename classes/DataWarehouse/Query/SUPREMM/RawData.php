@@ -70,6 +70,15 @@ class RawData extends \DataWarehouse\Query\Query
         $this->addWhereCondition(new WhereCondition( new TableField($joblistTable, "jobid"), "=", 
                                                                                 new TableField($factTable, "_id") ));
 
+        if ($stat == 'internal') {
+            $this->addField(new TableField($factTable, "start_time_ts"));
+            $this->addField(new TableField($factTable, "end_time_ts"));
+            $this->addField(new TableField($factTable, "cpu_user"));
+            $this->addField(new TableField($factTable, "catastrophe"));
+            $this->addField(new TableField($factTable, "shared"));
+            $this->addField(new TableField($resourcefactTable, 'timezone'));
+        }
+
         switch($stat) {
             case "job_count":
                 $this->addWhereCondition(new WhereCondition( "sj.end_time_ts", "between", "d.day_start_ts and d.day_end_ts") );
