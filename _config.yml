@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Open XDMoD
+title: Open XDMoD SUPReMM Module
 email: ccr-xdmod-help@buffalo.edu
 description: >
   XDMoD (XD Metrics on Demand) is an NSF-funded open source tool designed
@@ -25,6 +25,7 @@ baseurl: "/xdmod-supremm" # the subpath of your site, e.g. /blog
 url: "https://jpwhite4.github.io" # the base hostname & protocol for your site
 github_username: jpwhite4
 github_url: https://github.com/jpwhite4/xdmod-supremm
+xdmod_module_name: Job Performance (SUPReMM)
 latest_version: "8.0"
 version_list:
     - "8.0"
