@@ -2,6 +2,7 @@
 title: Job Performance Data Overview
 redirect_from:
     - "/8.0/"
+    - ""
 ---
 
 XDMoD is able to display detailed HPC job performance data via an optional
