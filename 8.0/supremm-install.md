@@ -1,7 +1,3 @@
----
-title: Installation Guide
----
-
 The Job Performance (SUPReMM) XDMoD module should be installed on an existing XDMoD
 instance.  The XDMoD instance must have job accounting data shredded and
 ingested and present in the UI. **Do not begin the configuration steps until the
@@ -10,17 +6,26 @@ documentation](https://open.xdmod.org) for instructions on installing and
 configuring XDMoD.
 
 If you have a previous version of the SUPReMM module installed, then
-follow the instructions in the [Upgrade Guide](supremm-upgrade.html)
+follow the instructions in the [Upgrade Guide](supremm-upgrade.html).
 
 RPM Installation
 ----------------
 
-An RPM package for Centos 7 are [available for download](https://github.com/ubccr/xdmod-supremm/releases/latest).
+An RPM package for Centos 7 is [available for download](https://github.com/ubccr/xdmod-supremm/releases/latest).
 
     # yum install xdmod-supremm-{{ page.sw_version }}-1.0.noarch.rpm
 
 Source Installation
 -------------------
+
+The Job Performance (SUPReMM) XDMoD module requires all of the software for XDMoD and
+the following additional packages:
+
+- [PHP MongoClient][]
+- [nodejs][] 6.14.4+
+
+[nodejs]:          https://nodejs.org
+[PHP MongoClient]:     http://php.net/manual/en/class.mongoclient.php
 
     $ tar zxvf xdmod-supremm-{{ page.sw_version }}.tar.gz
     $ cd xdmod-supremm-{{ page.sw_version }}
@@ -30,9 +35,20 @@ Source Installation
 XDMoD installation. These instructions assume you have already installed
 Open XDMoD in `/opt/xdmod`.
 
+Additional Notes
+----------------
+
+### SELinux
+
+**NOTE**: The webserver is not able to communicate with MongoDB with the
+default CentOS SELinux security policy. The following command allows the
+webserver to communicate over network:
+
+    # setsebool -P httpd_can_network_connect 1
+
 Configure SUPReMM module
 ------------------------
 
 After installing the XDMoD module it must be configured following the 
-instructions in the [XDMoD Module Configuration Guide](supremm-configuration.html).
+instructions in the [Job Performance (SUPReMM) XDMoD Module Configuration Guide](supremm-configuration.html).
 

@@ -1,12 +1,10 @@
----
-title: Job Summarization Configuration Guide
----
+
+This guide explains how to configure the Job Summarization software.
 
 ## Prerequisites
 
-The Job Performance (SUPReMM) XDMoD module must be installed and configured
-before configuring the Job Summarization software. See [the XDMoD module install guide](supremm-install.md) for instructions
-on this.  
+The Job Performance (SUPReMM) XDMoD module must be [installed](supremm-install.md) and [configured](supremm-configuration.md)
+before configuring the Job Summarization software. 
 
 Setup Script
 ------------

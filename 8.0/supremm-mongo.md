@@ -1,7 +1,3 @@
----
-title: Install MongoDB
----
-
 A MongoDB server must be installed and enabled. We recommend that the software 
 is installed on a dedicated server, however it may be installed on the same
 server as the XDMoD instance.

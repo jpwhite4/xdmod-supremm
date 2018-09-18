@@ -1,6 +1,7 @@
----
-title: SUPReMM installation overview
----
+This page gives an overview of the steps to install
+the various software components needed to enable Job Performance 
+data in XDMoD. Instructions for upgrading the software from are available
+on the [upgrade page](supremm-upgrade-overview.md)
 
 Prerequisites
 ----------------
@@ -17,15 +18,45 @@ Overview
 
 The steps to install and configure the software are as follows:
 
-1. Install [Data collection software](supremm-compute.html) on the HPC compute nodes.
+1. Install the [PCP Data collection](supremm-compute.html) software on the HPC compute nodes.
 1. Install [MongoDB document database](supremm-mongo.html) to store job-level performance data.
 1. Install and configure the [Job Performance module](supremm-install.html) on an existing XDMoD instance.
-1. Install and configure the [Job Summarization software](supremm-processing-install.html).
+1. Install and configure the [Job Summarization](supremm-processing-install.html) software.
 1. Run the [Job Summarization and Data Ingestion](supremm-ingestor.html) processes.
 
 It is important that the various software components are installed and configured in the
 order listed. For example, if the XDMoD module is not installed and configured then the summarization software
 will not be able to access the tables in XDMoD datawarehouse that are needed.
+
+Software Compatibility
+----------------------
+
+The Job Performance (SUPReMM) XDMoD module version number must be
+identical to the version of the base XDMoD install. The versions of the 
+summarization software and PCP software for a given XDMoD version are listed
+below.
+
+### Open XDMoD 8.0.0
+
+<table>
+<thead>
+<tr>
+<th>Package</th> <th>Recommended Version</th> <th>Compatible Version(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Job Summarization </td><td align="right"> 1.1.0               </td><td align="right"> 1.1.x </td>
+</tr>
+<tr>
+<td> PCP               </td><td align="right"> 3.12.2              </td><td align="right"> 3.11.x - 3.12.x </td>
+</tr>
+</tbody>
+</table>
+<br />
+
+The SUPReMM software has been tested with MongoDB version 3.4.15. We expect
+that the software is compatible with any supported release version of MongoDB.
 
 System Requirements
 ---------------------

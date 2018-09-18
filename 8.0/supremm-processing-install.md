@@ -1,8 +1,7 @@
----
-title: Job summarization software installation guide
----
 
-This guide will outline how to install the Job summarization software.
+The Job Summarization software should be installed on a server that has
+access to the MySQL server for the XDMoD Datawarehouse, the PCP archives
+and the MongoDB instance.
 
 ## Prerequisites
 
@@ -13,6 +12,11 @@ on this.
 A MongoDB database instance must be installed and running. See the [MongoDB install guide](supremm-mongo) for instructions.
 
 ## RPM Installation
+
+The RPM package has dependencies that are available in the [EPEL](http://fedoraproject.org/wiki/EPEL)
+repository. This repository can be added with this command for CentOS:
+
+    # yum install epel-release
 
 An RPM package for Centos 7 is [available for download](https://github.com/ubccr/supremm/releases/latest)
 

@@ -1,6 +1,4 @@
----
-title: SUPReMM module configuration guide
----
+This guide explains how to configure the Job Performance (SUPReMM) XDMoD module.
 
 ## Prerequisites
 
@@ -47,12 +45,12 @@ these packages manually, you may do so with the following commands:
     # npm install
 
 The script also prompts for the location of the document database that
-contains the job summary data. I.e. the mongodb instance. Enter the uri
-in the standard mongodb connection string format (see the [mongo documentation][] for
+contains the job summary data. I.e. the MongoDB instance. Enter the uri
+in the standard MongoDB connection string format (see the [mongo documentation][] for
 the syntax).  **You must specify the database name in the connection URI.** If
-the database is not specifed then the mongo driver defaults to the 'test'
+the database is not specified then the MongoDB driver defaults to the 'test'
 database, which will not contain the job summary data. The default database name is 'supremm'
-so, for example, if you have installed the mongodb on the same server as XDMoD then you would use
+so, for example, if you have installed the MongoDB on the same server as XDMoD then you would use
 the following uri:
 
     mongodb://localhost:27017/supremm
@@ -73,7 +71,7 @@ If no "Edit resource" options show in the list then quit the setup and complete 
 By default all the resources are disabled. You must select the "Edit
 resource" option for each resource that you wish to configure to appear in the
 SUPReMM realm and follow the prompt to enable the resource and set the correct
-options. The "Dataset mapping" should be set to pcp if processing job summaries
+options. The "Dataset mapping" should be set to 'pcp' if processing job summaries
 generated from PCP data. 
 
 SUPReMM configuration files
@@ -84,7 +82,7 @@ the installation prefix or `/etc/xdmod` for the RPM distribution.
 
 ### supremm_resources.json
 
-Defines all of the resources that have SUPReMM data that will be ingested and
+Defines all of the resources that have Job Performance data that will be ingested and
 displayed in XDMoD. Each object in the array represents the configuration for a
 single resource. All resources listed in this file must also have entries in
 the `resources.json` and `resource_specs.json` main configuration files
@@ -117,7 +115,7 @@ script. It can be manually obtained by running the following SQL query:
 where `%resource%` should be replaced with the `resource` parameter from the
 `resources.json` main configuration file.
 
-The `datasetmap` option allows the ingestion of SUPReMM data from different
+The `datasetmap` option allows the ingestion of Job Performance data from different
 data sources. Currently PCP is the only supported data source.
 
 The `hardware` property is used by the dataset mapping code to process PCP
@@ -138,8 +136,8 @@ database. The only supported db_engine is MongoDB.
     db = "supremm"
 
 The uri syntax is described in the [mongo documentation][]. **You must specify
-the database name in the connection URI.** If the database is not specifed then
-the mongo driver defaults to the 'test' database, which will not contain the
+the database name in the connection URI.** If the database is not specified then
+the MongoDB driver defaults to the 'test' database, which will not contain the
 job summary data.
 
 Advanced Configuration Options

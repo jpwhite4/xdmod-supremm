@@ -1,6 +1,3 @@
----
-title: Architecture
----
 
 Job performance data in XDMoD is obtained from collection software running on
 the compute nodes of the HPC resource.  The software architecture comprises three major components.

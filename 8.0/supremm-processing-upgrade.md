@@ -2,7 +2,7 @@
 title: Job Summarization Upgrade Guide
 ---
 
-Check the [software compatibilty tables](supremm-softwarecompat.md#software-compatibility)
+Check the [software compatibilty tables](supremm-install-overview.md#software-compatibility)
 to determine which version of software to upgrade.
 
 ## Prerequisites
