@@ -73,19 +73,21 @@ script, then the `script_dir` field should be set to the path to the directory
 that contains the job batch scripts. If the job batch scripts are not
 available, then the `script_dir` field should be set to an empty string.
 
-    {
-        ...
-        "resources": {
-            "my_cluster_name": {
-                "enabled": true,
-                "resource_id": 1,
-                "batch_system": "XDMoD",
-                "hostname_mode": "hostname",
-                "pcp_log_dir": "/data/pcp-logs/my_cluster_name",
-                "script_dir": "/data/jobscripts/my_cluster_name"
-            }
+```json
+{
+    ...
+    "resources": {
+        "my_cluster_name": {
+            "enabled": true,
+            "resource_id": 1,
+            "batch_system": "XDMoD",
+            "hostname_mode": "hostname",
+            "pcp_log_dir": "/data/pcp-logs/my_cluster_name",
+            "script_dir": "/data/jobscripts/my_cluster_name"
         }
     }
+}
+```
 
 MongoDB settings
 ----------------
@@ -95,15 +97,16 @@ will be used to store the job level summary documents.  The uri syntax is
 described in the [MongoDB documentation][]. You must specify the database name in
 the connection uri string in addition to specifying it in the `dbname` field
 
-    {
-        ...
-        "outputdatabase": {
-            "type": "mongodb",
-            "uri": "mongodb://localhost:27017/supremm",
-            "dbname": "supremm"
-        },
-        ...
-    }
+```json
+{
+    ...
+    "outputdatabase": {
+        "type": "mongodb",
+        "uri": "mongodb://localhost:27017/supremm",
+        "dbname": "supremm"
+    },
+}
+```
 
 [MongoDB documentation]:        https://docs.mongodb.org/manual/reference/connection-string/
 
@@ -122,14 +125,15 @@ If the summarization software is installed on the same machine as Open XDMoD the
 If the summarization software is installed on the same machine as Open XDMoD
 then ensure the `config.json` has the following settings:
 
-    {
-        ...
-        "xdmodroot": "/etc/xdmod",
-        "datawarehouse": {
-            "include": "xdmod://datawarehouse"
-        },
-        ...
-    }
+```json
+{
+    ...
+    "xdmodroot": "/etc/xdmod",
+    "datawarehouse": {
+        "include": "xdmod://datawarehouse"
+    },
+}
+```
 
 Where xdmodroot should be set to the location of the xdmod configuration
 directory, typically `/etc/xdmod` for RPM based installs. Note that the user
@@ -147,23 +151,26 @@ Create a file called `.supremm.my.cnf` in the home directory of the user that
 will run the job summarization software. This file must include the username
 and password to the Open XDMoD datawarehouse mysql server:
 
-    [client]
-    user=[USERNAME]
-    password=[PASSWORD]
+```ini
+[client]
+user=[USERNAME]
+password=[PASSWORD]
+```
 
 ensure the "datawarehouse" section of the `config.json` file has settings like
 the following, where *XDMOD\_DATABASE\_FILL\_ME\_IN* should be set to the hostname of
 the XDMoD database server.
 
-    {
-        ...
-        "datawarehouse": {
-            "db_engine": "MySQLDB",
-            "host": "XDMOD_DATABASE_FILL_ME_IN",
-            "defaultsfile": "~/.supremm.my.cnf"
-        },
-        ...
-    }
+```json
+{
+    ...
+    "datawarehouse": {
+        "db_engine": "MySQLDB",
+        "host": "XDMOD_DATABASE_FILL_ME_IN",
+        "defaultsfile": "~/.supremm.my.cnf"
+    },
+}
+```
 
 
 Setup the Database

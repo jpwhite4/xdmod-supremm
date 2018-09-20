@@ -88,20 +88,21 @@ single resource. All resources listed in this file must also have entries in
 the `resources.json` and `resource_specs.json` main configuration files
 (described in the [main configuration guide](http://open.xdmod.org/configuration.html)).
 
-    {
-        "resources": [
-            {
-                "resource": "resource1",
-                "resource_id": 1,
-                "enabled": true,
-                "datasetmap": "pcp",
-                "hardware": {
-                    "gpfs": ""
-                }
+```json
+{
+    "resources": [
+        {
+            "resource": "resource1",
+            "resource_id": 1,
+            "enabled": true,
+            "datasetmap": "pcp",
+            "hardware": {
+                "gpfs": ""
             }
-        ]
-    }
-
+        }
+    ]
+}
+```
 
 The value of the `resource` parameter should be identical to the `resource`
 parameter in the `resources.json` main configuration file.
@@ -110,7 +111,9 @@ The value of the `resource_id` must be the id of the resource in the XDMoD
 datawarehouse. This value is obtained automatically by the interactive setup
 script. It can be manually obtained by running the following SQL query:
 
-    mysql> SELECT id FROM `modw`.`resourcefact` WHERE code = "%resource%";
+```sql
+mysql> SELECT id FROM `modw`.`resourcefact` WHERE code = "%resource%";
+```
 
 where `%resource%` should be replaced with the `resource` parameter from the
 `resources.json` main configuration file.
@@ -129,11 +132,13 @@ Set this to an empty string if there is no GPFS filesystem for the resource.
 Contains the configuration settings to allow XDMoD to connect to the job summary document
 database. The only supported db_engine is MongoDB.
 
-    [jobsummarydb]
+```ini
+[jobsummarydb]
 
-    db_engine = "MongoDB"
-    uri = "mongodb://localhost:27017/supremm"
-    db = "supremm"
+db_engine = "MongoDB"
+uri = "mongodb://localhost:27017/supremm"
+db = "supremm"
+```
 
 The uri syntax is described in the [mongo documentation][]. **You must specify
 the database name in the connection URI.** If the database is not specified then

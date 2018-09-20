@@ -122,7 +122,7 @@ XDMoD as follows:
 
     $ aggregate_supremm.sh -d
 
-### 5. Check Open XDMoD Portal
+### 6. Check Open XDMoD Portal
 
 After the XDMoD ingest and aggregation script has completed successfully
 you should log in to the portal and confirm that the data are present.
@@ -143,10 +143,11 @@ Explorer" tabs.
 If there were jobs in the database then there should be data for the 'Number of Jobs Ended' metric.
 If there were valid metrics then you should see data for the 'Avg CPU %: User metric'.
 
-Note that the admin user that was created in the Open XDMoD has a 'User' role
-mapped to the 'Unknown' user by default. This means that all plots of
+**Note that the admin user that was created in the Open XDMoD has a 'User' role
+mapped to the 'Unknown' user by default.**{:.note} This means that all plots of
 SUPREMM realm data will show "No data available for the criteria specified" and
-no jobs will be able to be viewed in the "Job Viewer" tab.
+no jobs will be able to be viewed in the "Job Viewer" tab. The 'Center Director'
+role may be added to the admin user account via the Internal Dashboard.
 
 
 # Troubleshooting
@@ -162,7 +163,9 @@ An example of the dataflow diagram is shown in Figure 1. below.
 diagram displays detailed statistics on the data stored at various
 points in the processing workflow.*
 
-Check that the statistics reported in each of the blocks are as expected.
+The data flow page shows information for each configured HPC resource separately. 
+Use the dropdown on the top left to select each resource and check that the
+statistics reported in each of the blocks are as expected.
 
 ### PCP archive files
 
