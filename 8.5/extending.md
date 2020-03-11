@@ -19,7 +19,7 @@ non-PCP-based data such as is used in the XSEDE version of XDMoD [xsede-xdmod](h
 
 The overall architecture is described in [supremm-architecture.md](supremm-architecture.md)
 
-<img src="{{ site.baseurl }}/assets/images/ingest_flow.png" width="248" height="374" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
+
 The job summarization software outputs job information to a MongoDB instance.
 There are two documents per job: a document containing the summary statistics for
 a job such as the CPU usage and accounting information and a document that contains
@@ -43,6 +43,12 @@ The default dataset mapping file for PCP data is located at
 ```
 /usr/share/xdmod/etl/js/config/supremm/dataset_maps/pcp.js
 ```
+
+A schematic of the data flow is shown in Figure 1 below.
+
+<img src="{{ site.baseurl }}/assets/images/ingest_flow.png" width="248" height="374" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
+
+_Figure 1. Flow of information from job summary documents in MongoDB to the XDMoD datawarehouse_
 
 XDMoD supports using a different dataset mapping file for each
 HPC resource. THe dataset mapping file that is used is configured
