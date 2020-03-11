@@ -17,41 +17,32 @@ non-PCP-based data such as is used in the XSEDE version of XDMoD [xsede-xdmod](h
 
 ## Background
 
-The overall architecture is described in [supremm-architecture.md](supremm-architecture.md)
+The overall architecture is described in [supremm-architecture.md](supremm-architecture.md). This section
+goes into more detail about the ingestion data flow.
 
-
-The job summarization software outputs job information to a MongoDB instance.
+A schematic of the data flow is shown in Figure 1 below.
+The job summarization software writes job information to a MongoDB instance.
 There are two documents per job: a document containing the summary statistics for
 a job such as the CPU usage and accounting information and a document that contains
 the timeseries data for a subset of job metrics. The timeseries document is used
-as the data source for the timeseries plots in the XDMoD job viewer. The summary statistics document
-is read at ingest time (in the `aggregate_supremm.sh` script) to load data into
-the XDMoD MySQL-based datawarehouse. There are two main files that control
-how data are copied from the summary statistics document to the datawarehouse:
-a schema definition and a dataset mapping definition. The schema definition file
-defines the structure of the XDMoD datawarehouse and the statistics and
-group-bys that are visible in the XDMoD portal. The dataset mapping
-file defines how the information in a job's summary statistics
-document is transformed into the data loaded into the datawarehouse.
-
-The default schema definition file is located at:
-```
-/usr/share/xdmod/etl/js/config/supremm/etl.schema.js
-```
+as the data source for the timeseries plots in the XDMoD job viewer. 
+The summary statistics document
+is read at ingest time by the `etl.cluster.js` script (which is executed in the `aggregate_supremm.sh` script) to load data into
+the XDMoD MySQL-based datawarehouse. The main file that controls how
+data are copied from the summary statistics document to the datawarehouse is
+the dataset mapping definition file.
 
 The default dataset mapping file for PCP data is located at
 ```
 /usr/share/xdmod/etl/js/config/supremm/dataset_maps/pcp.js
 ```
 
-A schematic of the data flow is shown in Figure 1 below.
-
-<img src="{{ site.baseurl }}/assets/images/ingest_flow.png" width="331" height="525" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
+<img src="{{ site.baseurl }}/assets/images/ingest_flow.png" width="850" height="783" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
 
 _Figure 1. Flow of information from job summary documents in MongoDB to the XDMoD datawarehouse_
 
 XDMoD supports using a different dataset mapping file for each
-HPC resource. THe dataset mapping file that is used is configured
+HPC resource. The dataset mapping file that is used is configured
 in the `datasetmap` parameter in the [supremm_resources.json](supremm-configuration.html#supremm_resourcesjson)
 file.  The dataset mapping is a written in javascript and supports
 arbitrary javascript functions to transform the job data.
@@ -146,14 +137,16 @@ be manually verified for the test to be meaningful.
 
 Steps to run the tests:
 
-1) Generate a json input file by exporting a job record from the MongoDB database in json format
+1) Generate a json input file by exporting a job record from the MongoDB database in json format.
 The [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/) command can
 be used to export documents in json format.
 
 2) Copy the input file to the `/usr/share/xdmod/etl/js/config/supremm/tests/[RESOURCE]/input`
 directory where `[RESOURCE]` is the name of the resource with the new
 mapping file as it appears in `supremm_resources.json`. The name of the file should
-match the document identifier from MongoDB (i.e. the `_id` field). For example, if the input file was for job id 8291026 (mongo `_id` = 8291026-1518721536)
+match the document identifier from MongoDB (i.e. the `_id` field).
+
+ For example, if the input file was for job id 8291026 (mongo `_id` = 8291026-1518721536)
 on the `wopr` resource then the file would be called `/usr/share/xdmod/etl/js/config/supremm/tests/wopr/input/8291026-1518721536.json`
 
 3) Create the expected output file. The easiest way to create the output file is to create an empty json
