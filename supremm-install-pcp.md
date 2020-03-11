@@ -1,3 +1,3 @@
 ---
-redirect_to: /8.0/supremm-install-pcp.html
+redirect_to: /8.5/supremm-install-pcp.html
 ---

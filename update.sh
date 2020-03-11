@@ -3,11 +3,8 @@
 
 set -e
 
-ENDPOINT=https://api.github.com/repos/ubccr/xdmod-supremm
-BRANCHFILTER='xdmod[0-9]\.[0-9]'
-
-branches="xdmod8.0 xdmod7.5 xdmod7.0"
-latest="xdmod8.0"
+branches="xdmod8.5 xdmod8.0"
+latest="xdmod8.5"
 
 for branch in $branches;
 do
