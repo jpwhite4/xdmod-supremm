@@ -132,6 +132,11 @@ the resource name is `wopr`. The configuration setting would then look similar t
 
 ### 3. Testing the new mapping
 
+XDMoD does not require tests exist for a dataset mapping, however it is
+highly recommended to create at least one test case since it significantly
+helps with debugging problems in the mapping. If you do not wish to create test
+cases then this step can be skipped.
+
 The XDMoD software has a test mode that can be used to verify the dataset
 mapping. The test mode requires one or more input files each of which must
 contain a job summary document in json format. Each input file must have a corresponding
@@ -140,6 +145,7 @@ a mechanism to generate the output file. The generated output file must
 be manually verified for the test to be meaningful.
 
 Steps to run the tests:
+
 1) Generate a json input file by exporting a job record from the MongoDB database in json format
 The [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/) command can
 be used to export documents in json format.
@@ -150,7 +156,7 @@ mapping file as it appears in `supremm_resources.json`. The name of the file sho
 match the document identifier from MongoDB (i.e. the `_id` field). For example, if the input file was for job id 8291026 (mongo `_id` = 8291026-1518721536)
 on the `wopr` resource then the file would be called `/usr/share/xdmod/etl/js/config/supremm/tests/wopr/input/8291026-1518721536.json`
 
-3) Create output file. The easiest way to create the output file is to create an empty json
+3) Create the expected output file. The easiest way to create the output file is to create an empty json
 document in the output directory: `/usr/share/xdmod/etl/js/config/supremm/tests/[RESOURCE]/output`.
 For example the output file corresponding to the example input file above would be
 `/usr/share/xdmod/etl/js/config/supremm/tests/wopr/output/8291026-1518721536.json`
