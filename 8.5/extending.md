@@ -46,7 +46,7 @@ The default dataset mapping file for PCP data is located at
 
 A schematic of the data flow is shown in Figure 1 below.
 
-<img src="{{ site.baseurl }}/assets/images/ingest_flow.png" width="248" height="374" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
+<img src="{{ site.baseurl }}/assets/images/ingest_flow.png" width="331" height="525" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
 
 _Figure 1. Flow of information from job summary documents in MongoDB to the XDMoD datawarehouse_
 
@@ -144,32 +144,22 @@ Steps to run the tests:
 The [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/) command can
 be used to export documents in json format.
 
-2) Copy the input file to the
-
-/usr/share/xdmod/etl/js/config/supremm/tests/[RESOURCE]/input
-
+2) Copy the input file to the `/usr/share/xdmod/etl/js/config/supremm/tests/[RESOURCE]/input`
 directory where `[RESOURCE]` is the name of the resource with the new
 mapping file as it appears in `supremm_resources.json`. The name of the file should
-match the document id in mongo. For example, if the input file was for job id 8291026 (mongo _id 8291026-1518721536)
-on the `wopr` resource then the file would be called:
-
-/usr/share/xdmod/etl/js/config/supremm/tests/wopr/input/8291026-1518721536.json
+match the document identifier from MongoDB (i.e. the `_id` field). For example, if the input file was for job id 8291026 (mongo `_id` = 8291026-1518721536)
+on the `wopr` resource then the file would be called `/usr/share/xdmod/etl/js/config/supremm/tests/wopr/input/8291026-1518721536.json`
 
 3) Create output file. The easiest way to create the output file is to create an empty json
-document in the output directory:
-```bash
-/usr/share/xdmod/etl/js/config/supremm/tests/[RESOURCE]/output
-```
-For example the output file corresponding to the example input file above would be:
-```bash
-/usr/share/xdmod/etl/js/config/supremm/tests/wopr/output/8291026-1518721536.json
-```
+document in the output directory: `/usr/share/xdmod/etl/js/config/supremm/tests/[RESOURCE]/output`.
+For example the output file corresponding to the example input file above would be
+`/usr/share/xdmod/etl/js/config/supremm/tests/wopr/output/8291026-1518721536.json`
 with contents:
 
 ```json
 {}
 ```
-Then edit the file /usr/share/xdmod/etl/js/lib/etl_profile.js and change the
+Then edit the file `/usr/share/xdmod/etl/js/lib/etl_profile.js` and change the
 line:
 ```js
     var regenerateOnFail = false;
@@ -178,18 +168,19 @@ to
 ```js
     var regenerateOnFail = true;
 ```
-The run the following:
+Then run the following:
 ```bash
-cd /usr/share/xdmod/etl/js
-node etl.cli.js -t -d
+$ cd /usr/share/xdmod/etl/js
+$ node etl.cli.js -t -d
 ```
 This will generate a large number of error log messages since the expected
-results file is empty. But since the regenerateOnFail is set to true it
+results file is empty. But since the `regenerateOnFail` variable is set to true it
 will overwrite the expected result file with the new data. Manually
 check the file to confirm that the data are correct. In this example, there
 should be values in the file for the various `netdir` metrics added in the
 new custom mapping:
 ```json
+{
     "netdir_home_read": {
         "value": 1235,
         "error": 0
@@ -205,15 +196,16 @@ new custom mapping:
     "netdir_scratch_write": {
         "value": 0,
         "error": 0
-    },
+    }
+}
 ```
-The /usr/share/xdmod/etl/js/lib/etl_profile.js should be edited again to revert the
+The `/usr/share/xdmod/etl/js/lib/etl_profile.js` should be edited again to revert the
 change to the `regenerateOnFail` variable.
 
-Finally re-run the test harness again and confirm that the tests pass:
+4) Finally re-run the test harness again and confirm that the tests pass:
 ```bash
-cd /usr/share/xdmod/etl/js
-node etl.cli.js -t -d
+$ cd /usr/share/xdmod/etl/js
+$ node etl.cli.js -t -d
 ```
 ```bash
 2020-03-10T18:12:42.401Z - info: Regression Testing...
