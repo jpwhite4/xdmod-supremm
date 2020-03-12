@@ -31,6 +31,7 @@ is read at ingest time by the `etl.cluster.js` script (which is executed in the 
 the XDMoD MySQL-based datawarehouse.  The `etl.cluster.js` loads
 a dataset mapping module that defines how
 data are copied from the summary statistics document to the datawarehouse.
+The default dataset mapping module file for PCP data is `/usr/share/xdmod/etl/js/config/supremm/dataset_maps/pcp.js`.
 
 XDMoD supports using a different dataset mapping file for each
 HPC resource. The dataset mapping file to use for a given resource is configured
