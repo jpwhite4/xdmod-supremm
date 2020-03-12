@@ -28,11 +28,6 @@ the timeseries data for a subset of job metrics. The timeseries document is used
 as the data source for the timeseries plots in the XDMoD job viewer. 
 The summary statistics document
 is read at ingest time by the `etl.cluster.js` script (which is executed in the `aggregate_supremm.sh` script) to load data into
-the XDMoD MySQL-based datawarehouse.  The `etl.cluster.js` loads
-a dataset mapping module that defines how
-data are copied from the summary statistics document to the datawarehouse.
-The default dataset mapping module file for PCP data is
-`/usr/share/xdmod/etl/js/config/supremm/dataset_maps/pcp.js`
 
 XDMoD supports using a different dataset mapping file for each
 HPC resource. The dataset mapping file to use for a given resource is configured
