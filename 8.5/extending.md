@@ -28,24 +28,21 @@ the timeseries data for a subset of job metrics. The timeseries document is used
 as the data source for the timeseries plots in the XDMoD job viewer. 
 The summary statistics document
 is read at ingest time by the `etl.cluster.js` script (which is executed in the `aggregate_supremm.sh` script) to load data into
-the XDMoD MySQL-based datawarehouse. The main file that controls how
-data are copied from the summary statistics document to the datawarehouse is
-the dataset mapping definition file.
+the XDMoD MySQL-based datawarehouse.  The `etl.cluster.js` loads
+a dataset mapping module that defines how
+data are copied from the summary statistics document to the datawarehouse.
+The default dataset mapping module file for PCP data is
+`/usr/share/xdmod/etl/js/config/supremm/dataset_maps/pcp.js`
 
-The default dataset mapping file for PCP data is located at
-```
-/usr/share/xdmod/etl/js/config/supremm/dataset_maps/pcp.js
-```
+XDMoD supports using a different dataset mapping file for each
+HPC resource. The dataset mapping file to use for a given resource is configured
+in the `datasetmap` parameter in the [supremm_resources.json](supremm-configuration.html#supremm_resourcesjson)
+file.  The dataset mapping is a written in javascript and supports
+arbitrary javascript functions to transform the job data.
 
 <img src="{{ site.baseurl }}/assets/images/ingest_flow.png" width="850" height="783" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
 
 _Figure 1. Flow of information from job summary documents in MongoDB to the XDMoD datawarehouse_
-
-XDMoD supports using a different dataset mapping file for each
-HPC resource. The dataset mapping file that is used is configured
-in the `datasetmap` parameter in the [supremm_resources.json](supremm-configuration.html#supremm_resourcesjson)
-file.  The dataset mapping is a written in javascript and supports
-arbitrary javascript functions to transform the job data.
 
 ## Example
 
