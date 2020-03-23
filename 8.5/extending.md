@@ -146,9 +146,9 @@ match the document identifier from MongoDB (i.e. the `_id` field).
 on the `wopr` resource then the file would be called `/usr/share/xdmod/etl/js/config/supremm/tests/wopr/input/8291026-1518721536.json`
 
 3) Create the expected output file. The easiest way to create the output file is to create an empty json
-document in the output directory: `/usr/share/xdmod/etl/js/config/supremm/tests/[RESOURCE]/output`.
+document in the output directory: `/usr/share/xdmod/etl/js/config/supremm/tests/[RESOURCE]/expected`.
 For example the output file corresponding to the example input file above would be
-`/usr/share/xdmod/etl/js/config/supremm/tests/wopr/output/8291026-1518721536.json`
+`/usr/share/xdmod/etl/js/config/supremm/tests/wopr/expected/8291026-1518721536.json`
 with contents:
 
 ```json
