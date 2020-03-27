@@ -97,7 +97,7 @@ available, then the `script_dir` field should be set to an empty string.
 </thead>
 <tbody>
 <tr>
-<td>`enabled`</td><td>true / false</td><td>If set to false then this resource will be ignored by the software<td>
+<td>`enabled`</td><td>true / false</td><td>If set to false then this resource will be ignored by the software</td>
 </tr>
 <tr>
 <td>`resource_id`</td><td>[integer]</td><td>The value from the `id` column in the `modw`.`resourcefact` table in the XDMoD database</td>
