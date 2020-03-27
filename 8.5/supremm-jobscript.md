@@ -19,17 +19,16 @@ datestamp named directory:
 [BASEPATH]/YYYYMMDD/JOBID.savescript
 ```
 where `YYYY` is the four digit year, `MM` two digit month, `DD` two digit day
-and JOBID is the identifier for the job from the resource manager. 
+and `JOBID` is the identifier for the job from the resource manager. 
 The date can refer to either the submit day, start day or end day of the job
 but must be the same for all jobs for a resource. The configuration
 settings for the path name and datestamp meaning described in the [configuration guide](supremm-processing-configuration.md).
 
 The files are stored in datestamped directories because:
-1) Storing the files by date limits the number of files per directory.
-2) The datestamp is also used along with the job identifier to locate
+1. Storing the files by date limits the number of files per directory.
+1. The datestamp is also used along with the job identifier to locate
 the accounting record for the job. The datestamp is used because job identifiers
 provided by a resource manager are typically not globally unique.
-3) The datestamp is used to limit the number of files to scan each time the 
+1. The datestamp is used to limit the number of files to scan each time the 
 `ingest_jobscripts.py` script runs.
-
 
