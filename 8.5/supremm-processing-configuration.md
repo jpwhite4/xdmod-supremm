@@ -89,6 +89,49 @@ available, then the `script_dir` field should be set to an empty string.
 }
 ```
 
+<table>
+<thead>
+<tr>
+<th>Setting</th> <th>Allowed values</th> <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>`enabled`</td><td>true / false</td><td>If set to false then this resource will be ignored by the software<td>
+</tr>
+<tr>
+<td>`resource_id`</td><td>[integer]</td><td>The value from the `id` column in the `modw`.`resourcefact` table in the XDMoD database</td>
+</tr>
+<tr>
+<td>`batch_system`</td><td>"XDMoD"</td><td>Sets the module used to obtain job accounting information. This should be set to XDMoD</td>
+</tr>
+<tr>
+<td>`hostname_mode`</td><td>"hostname" / "fqdn"</td><td>Determines how compute node names as reported by the resource manager are compared
+with the node name information from the PCP archives. In `hostname` mode only the hostname of nodes is used to
+match nodes. In `fqdn` (full-qualified domain name) mode then the full name is used.</td>
+</tr>
+<tr>
+<td>`host_name_ext`</td><td>[domain name]</td><td>If the hostname_mode is fqdn and the host_name_ext is specified then the string will
+be appended to the node name from the PCP archives if it is absent. This is used to workaround misconfigured /etc/hosts files.
+This setting should be omitted if not required.</td>
+</tr>
+<tr>
+<td>`pcp_log_dir`</td><td>[filesystem path]</td><td>Path to the PCP log files for the resource.</td>
+</tr>
+<tr>
+<td>`batchscript.path`</td><td>[filesystem path]</td><td>Path to the batch script files. Set to an empty string if the 
+batch script files are not saved.</td>
+</tr>
+<tr>
+<td>`batchscript.timestamp_mode`</td><td>"start" / "submit" / "end" / "none"</td><td>How to interpret the
+directory timestamp names for the batch scripts. "start" means that the directory name corresponds
+to the job start time, 'submit' the job submit time, 'end' the job end time and 'none' the timestamp
+should not be included in the job lookup.</td>
+</tr>
+</tbody>
+</table>
+<br />
+
 Database authentication settings
 --------------------------------
 
