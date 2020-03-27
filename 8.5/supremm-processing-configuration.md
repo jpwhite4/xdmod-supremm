@@ -122,7 +122,7 @@ This setting should be omitted if not required.</td>
 <td><code>pcp_log_dir</code></td><td>[filesystem path]</td><td>Path to the PCP log files for the resource.</td>
 </tr>
 <tr>
-<td><code>batchscript.path</code></td><td>[filesystem path]</td><td>Path to the batch script files. Set to an empty string if the 
+<td><code>batchscript.path</code></td><td>[filesystem path]</td><td>Path to the batch script files. Set to an empty string if the
 batch script files are not saved.</td>
 </tr>
 <tr>
