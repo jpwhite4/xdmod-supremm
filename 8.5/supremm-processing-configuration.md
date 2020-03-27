@@ -100,18 +100,18 @@ available, then the `script_dir` field should be set to an empty string.
 </thead>
 <tbody>
 <tr>
-<td><code>enabled</code></td><td>true / false</td><td>If set to false then this resource will be ignored by the software</td>
+<td><code>enabled</code></td><td><code>true</code> | <code>false</code></td><td>If set to <code>false</code> then this resource will be ignored by the software</td>
 </tr>
 <tr>
-<td><code>resource_id</code></td><td>[integer]</td><td>The value from the `id` column in the `modw`.`resourcefact` table in the XDMoD database</td>
+<td><code>resource_id</code></td><td>[integer]</td><td>The value from the <code>id</code> column in the <code>modw</code>.<code>resourcefact</code> table in the XDMoD database</td>
 </tr>
 <tr>
-<td><code>batch_system</code></td><td>"XDMoD"</td><td>Sets the module used to obtain job accounting information. This should be set to XDMoD</td>
+<td><code>batch_system</code></td><td><code>XDMoD</code></td><td>Sets the module used to obtain job accounting information. This should be set to XDMoD</td>
 </tr>
 <tr>
-<td><code>hostname_mode</code></td><td>"hostname" / "fqdn"</td><td>Determines how compute node names as reported by the resource manager are compared
-with the node name information from the PCP archives. In `hostname` mode only the hostname of nodes is used to
-match nodes. In `fqdn` (full-qualified domain name) mode then the full name is used.</td>
+<td><code>hostname_mode</code></td><td><code>hostname</code> | <code>fqdn</code></td><td>Determines how compute node names as reported by the resource manager are compared
+with the node name information from the PCP archives. In <code>hostname</code> mode only the hostname of nodes is used to
+match nodes. In <code>fqdn</code> (full-qualified domain name) mode then the full name is used.</td>
 </tr>
 <tr>
 <td><code>host_name_ext</code></td><td>[domain name]</td><td>If the hostname_mode is fqdn and the host_name_ext is specified then the string will
@@ -126,9 +126,9 @@ This setting should be omitted if not required.</td>
 batch script files are not saved.</td>
 </tr>
 <tr>
-<td><code>batchscript.timestamp_mode</code></td><td>"start" / "submit" / "end" / "none"</td><td>How to interpret the
-directory timestamp names for the batch scripts. "start" means that the directory name corresponds
-to the job start time, 'submit' the job submit time, 'end' the job end time and 'none' the timestamp
+<td><code>batchscript.timestamp_mode</code></td><td><code>start</code> | <code>submit</code> | <code>end</code> | <code>none</code></td><td>How to interpret the
+directory timestamp names for the batch scripts. <code>start</code> means that the directory name corresponds
+to the job start time, <code>submit</code> the job submit time, <code>end</code> the job end time and <code>none</code> the timestamp
 should not be included in the job lookup.</td>
 </tr>
 </tbody>
