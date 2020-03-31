@@ -83,15 +83,13 @@ available, then the `script_dir` field should be set to an empty string.
             "batch_system": "XDMoD",
             "hostname_mode": "hostname",
             "pcp_log_dir": "/data/pcp-logs/my_cluster_name",
-            "batchscript": {
-                "path": "/data/jobscripts/my_cluster_name",
-                "timestamp_mode": "start"
-            }
+            "script_dir": "/data/jobscripts/my_cluster_name"
         }
     }
 }
 ```
 
+The various settings are described in the table below:
 <table>
 <thead>
 <tr>
@@ -122,14 +120,9 @@ This setting should be omitted if not required.</td>
 <td><code>pcp_log_dir</code></td><td>[filesystem path]</td><td>Path to the PCP log files for the resource.</td>
 </tr>
 <tr>
-<td><code>batchscript.path</code></td><td>[filesystem path]</td><td>Path to the batch script files. Set to an empty string if the
+<td><code>script_dir</code></td><td>[filesystem path]</td><td>Path to the batch script files. The batch scripts must be stored following
+the naming convention described in the <a href="supremm-jobscript.html">job script documentation</a>. Set this to an empty string if the
 batch script files are not saved.</td>
-</tr>
-<tr>
-<td><code>batchscript.timestamp_mode</code></td><td><code>start</code> | <code>submit</code> | <code>end</code> | <code>none</code></td><td>How to interpret the
-directory timestamp names for the batch scripts. <code>start</code> means that the directory name corresponds
-to the job start time, <code>submit</code> the job submit time, <code>end</code> the job end time and <code>none</code> the timestamp
-should not be included in the job lookup.</td>
 </tr>
 </tbody>
 </table>
