@@ -82,7 +82,7 @@ module.exports = function (config) {
     // override the mapping attributes for netdir home and util:
 
     //           The second argument should be set to the name of the
-    //           filesystem as it appears in the job level summary     ---┐
+    //           filesystem as it appears in the job level summary    ────┐
     //                                                                    ▾
     pcp_map.attributes.netdir_home_read = map_helpers.device('lustre', '/home', 'read_bytes-total');
     pcp_map.attributes.netdir_home_write = map_helpers.device('lustre', '/home', 'write_bytes-total');
@@ -138,7 +138,29 @@ Steps to run the tests:
 
 1) Generate a json input file by exporting a job record from the MongoDB database in json format.
 The [mongoexport](https://docs.mongodb.com/manual/reference/program/mongoexport/) command can
-be used to export documents in json format.
+be used to export documents in json format. Note that newer versions of mongoexport output
+the data in an 'extended' json format. The test input files should be in the mongodb
+relaxed json format (see the [MongoDB json documentation](https://docs.mongodb.com/manual/reference/mongodb-extended-json/) for
+full details. Briefly, if the output file contains data similar to:
+```js
+    "acct": {
+        "local_job_id" : NumberLong(4014453)
+    }
+```
+or
+```json
+    "acct": {
+        "local_job_id" : {
+            "$numberLong": "4014453"
+        }
+    }
+```
+these should be edited to use a plain json number field
+```json
+    "acct": {
+        "local_job_id" : 4014453
+    }
+```
 
 2) Copy the input file to the `/usr/share/xdmod/etl/js/config/supremm/tests/[RESOURCE]/input`
 directory where `[RESOURCE]` is the name of the resource with the new
@@ -187,11 +209,11 @@ new custom mapping:
         "value": 1235,
         "error": 0
     },
-    "netdir_scratch_read": {
+    "netdir_util_read": {
         "value": 136192137,
         "error": 0
     },
-    "netdir_scratch_write": {
+    "netdir_util_write": {
         "value": 0,
         "error": 0
     }
