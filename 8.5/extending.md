@@ -39,7 +39,7 @@ in the `datasetmap` parameter in the [supremm_resources.json](supremm-configurat
 file.  The dataset mapping is a written in javascript and supports
 arbitrary javascript functions to transform the job data.
 
-<img src="{{ site.baseurl }}/assets/images/ingest_flow.png" width="850" height="783" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
+<img src="{{ site.baseurl }}/assets/images/mongo_to_xdmod_DFD.svg" width="850" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
 
 _Figure 1. Flow of information from job summary documents in MongoDB to the XDMoD datawarehouse_
 
