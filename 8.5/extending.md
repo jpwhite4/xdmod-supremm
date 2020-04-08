@@ -13,14 +13,14 @@ may need to be modified when the XDMoD software is upgraded.
 
 This document only describes instructions for the PCP-based datasources. However,
 the same techniques describe here can be used to generate data mappings for
-non-PCP-based data such as is used in the XSEDE version of XDMoD [xsede-xdmod](https://xdmod.ccr.buffalo.edu).
+non-PCP-based data such as is used in the [XSEDE version of XDMoD](https://xdmod.ccr.buffalo.edu).
 
 ## Background
 
-The overall architecture is described in [supremm-architecture.md](supremm-architecture.md). This section
+The overall architecture is described in [Architecture](supremm-architecture.md) section. This section
 goes into more detail about the ingestion data flow.
 
-A schematic of the data flow is shown in Figure 1 below.
+A schematic of the data flow is shown in Figure [1](#mongo-to-xdmod-dfd) below.
 The job summarization software writes job information to a MongoDB instance.
 There are two documents per job: a document containing the summary statistics for
 a job such as the CPU usage and accounting information and a document that contains
@@ -39,9 +39,9 @@ in the `datasetmap` parameter in the [supremm_resources.json](supremm-configurat
 file.  The dataset mapping is a written in javascript and supports
 arbitrary javascript functions to transform the job data.
 
-<img src="{{ site.baseurl }}/assets/images/mongo_to_xdmod_DFD.svg" width="850" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
+<img src="{{ site.baseurl }}/assets/images/mongo_to_xdmod_DFD.svg" id="mongo-to-xdmod-dfd" width="850" alt="Dataflow diagram of ingest of job data from MongoDB to the XDMoD datawarehouse"/>
 
-_Figure 1. Flow of information from job summary documents in MongoDB to the XDMoD datawarehouse_
+_Figure 1. Flow of information from job summary documents in MongoDB to the XDMoD datawarehouse._
 
 ## Example
 
@@ -82,7 +82,7 @@ module.exports = function (config) {
     // override the mapping attributes for netdir home and util:
 
     //           The second argument should be set to the name of the
-    //           filesystem as it appears in the job level summary    ────┐
+    //           filesystem as it appears in the job level summary    ----┐
     //                                                                    ▾
     pcp_map.attributes.netdir_home_read = map_helpers.device('lustre', '/home', 'read_bytes-total');
     pcp_map.attributes.netdir_home_write = map_helpers.device('lustre', '/home', 'write_bytes-total');
