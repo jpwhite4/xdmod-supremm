@@ -26,12 +26,24 @@ url: "https://jpwhite4.github.io" # the base hostname & protocol for your site
 github_username: jpwhite4
 github_url: https://github.com/jpwhite4/xdmod-supremm
 xdmod_module_name: Job Performance (SUPReMM)
-latest_version: "8.5"
+latest_version: "9.0"
 version_list:
+  - "9.0"
   - "8.5"
   - "8.1"
 
 defaults:
+  -
+    scope:
+      path: "9.0"
+      type: "pages"
+    values:
+      layout: "page"
+      version: "9.0"
+      sw_version: "9.0.0"
+      summ_sw_version: "1.4.0"
+      style: "effervescence"
+      tocversion: "v9_0toc"
   -
     scope:
       path: "8.5"
