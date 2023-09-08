@@ -21,8 +21,8 @@ description: >
   hardware counters to collect a range of performance information, including
   memory usage, filesystem usage, interconnect fabric traffic, and CPU
   performance.
-baseurl: "xdmod-supremm" # the subpath of your site, e.g. /blog
-url: "https://jpwhite4.github.io/"
+baseurl: "/xdmod-supremm" # the subpath of your site, e.g. /blog
+url: "https://jpwhite4.github.io"
 github_username: jpwhite4
 github_url: https://github.com/jpwhite4/xdmod-supremm
 xdmod_module_name: Job Performance (SUPReMM)
