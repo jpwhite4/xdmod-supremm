@@ -101,7 +101,7 @@ The XDMoD Job Performance (SUPReMM) module must be installed on an existing, fun
 
 Compute node data collection software must be installed on the existing HPC compute nodes:
 - If using PCP then the Performance Metrics Collector Daemon (pmcd) and various Performance Metrics Domain Agents (PMDAs)
-should be installed on the compute nodes. 
+should be installed on the compute nodes.
 - If using Prometheus then Prometheus exporters should be installed on the compute nodes.
 
 If using Prometheus as the data collection software then a main Prometheus server must be setup.
@@ -121,7 +121,7 @@ The amount of data storage depends on the amount of historical data that is desi
 The following estimates are based on using the default configuration:
 
   * PCP data: 70 MB per node per day (stored as files on the network filesystem)
-  * Prometheus data: TODO MB per node per day (stored in Prometheus's timeseries database)
+  * Prometheus data: 8.7 MB per node per day (stored in Prometheus's timeseries database)
   * Job level summary records: 36 KB per job (stored in MongoDB)
   * XDMoD datawarehouse: 2 KB per job (stored in MySQL)
 

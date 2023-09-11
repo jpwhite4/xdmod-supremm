@@ -3,8 +3,8 @@
 
 set -e
 
-branches="xdmod10.0 xdmod9.5"
-latest="xdmod10.0"
+branches="xdmod10.5 xdmod10.0 xdmod9.5"
+latest="xdmod10.5"
 
 for branch in $branches;
 do
@@ -26,6 +26,6 @@ redirect_to: /$version/${basefile}.html
 EOF
             fi
         fi
-        git show refs/remotes/upstream/$branch:$file | sed "$sedscript" > $outfile
+        git show refs/remotes/upstream/$branch:$file | gsed "$sedscript" > $outfile
     done
 done
