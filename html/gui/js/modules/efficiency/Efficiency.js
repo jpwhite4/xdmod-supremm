@@ -117,8 +117,8 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
                                 start_date: Ext.getCmp('efficiency').getDurationSelector().getStartDate(),
                                 end_date: Ext.getCmp('efficiency').getDurationSelector().getEndDate(),
                                 order_by: {
-                                    field: analyticConfig.field,
-                                    dirn: 'asc'
+                                    field: analyticConfig.statistics[1],
+                                    dirn: 'desc'
                                 },
                                 filters: filterObj,
                                 mandatory_filters: analyticConfig.mandatoryFilters,
@@ -236,7 +236,7 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
         '<h1>{title}</h1>',
         '<p>{description}</p>',
         '</div>',
-        '<div class="analyticScatterPlotThumbnail" id="{analytic}Chart"></div>',
+        '<div class="analyticScatterPlotThumbnail" id="{analytic}Chart">Chart Loading</div>',
         '</div>'
     ],
 
@@ -331,7 +331,7 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
             tooltip: { enabled: false },
             plotOptions: {
                 series: {
-                    turboThreshold: 3000,
+                    turboThreshold: 0,
                     allowPointSelect: false,
                     states: { hover: { enabled: false } }
                 }
@@ -378,7 +378,6 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
             url: XDMoD.REST.url + '/efficiency/scatterPlot/' + config.analytic,
             root: 'results',
             autoLoad: true,
-            chartInst: null,
             baseParams: {
                 start: 0,
                 limit: 3000,
@@ -389,8 +388,8 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
                     start_date: Ext.getCmp('efficiency').getDurationSelector().getStartDate(),
                     end_date: Ext.getCmp('efficiency').getDurationSelector().getEndDate(),
                     order_by: {
-                        field: config.field,
-                        dirn: 'asc'
+                        field: config.statistics[1],
+                        dirn: 'desc'
                     },
                     filters: [],
                     mandatory_filters: config.mandatoryFilters,
@@ -400,21 +399,8 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
             fields: [xStatistic, yStatistic],
             listeners: {
                 exception: function (proxy, type, action, exception, response) {
-                    if (this.chartInst) {
-                        this.chartInst.destroy();
-                        this.chartInst = null;
-                    }
                     var details = Ext.decode(response.responseText);
                     document.getElementById(config.analytic + 'Chart').innerHTML = '<div class="analyticInfoError">Error: ' + response.status + ' (' + response.statusText + ')<br>Details: ' + details.message + '</div>';
-                },
-                beforeLoad: function () {
-                    if (this.chartInst) {
-                        this.chartInst.destroy();
-                        this.chartInst = null;
-                    }
-                    this.chartInst = new Highcharts.Chart(chartConfig);
-                    // /Add loading message
-                    this.chartInst.showLoading();
                 },
                 load: function () {
                     /*
@@ -449,7 +435,20 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
 
                             // Get the result data series with name information
                             dataset = self.formatData(resultData, xStatistic, yStatistic, reversed);
-                            resultSeriesData = dataset[0];
+                            let resultSeries = {
+                                data: dataset[0]
+                            };
+
+                            if (resultSeries.data.length > 25) {
+                                resultSeries.marker = {
+                                    fillColor: 'transparent',
+                                    symbol: 'circle',
+                                    radius: 10,
+                                    lineWidth: 2,
+                                    lineColor: 'black'
+                                };
+                            }
+
                             resultXMax = dataset[1];
                             resultYMax = dataset[2];
 
@@ -457,29 +456,25 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
                             xAxisMax = Math.max(generalXMax, resultXMax);
                             yAxisMax = Math.max(generalYMax, resultYMax);
 
+/*
                             this.chartInst.addSeries({
                                 data: generalSeriesData
                             });
 
-                            this.chartInst.addSeries({
-                                data: resultSeriesData,
-                                marker: {
-                                    fillColor: 'transparent',
-                                    symbol: 'circle',
-                                    radius: 10,
-                                    lineWidth: 2,
-                                    lineColor: 'black'
-                                }
-                            });
+                            this.chartInst.addSeries(resultSeries);
+*/
+
                         } else if (generalData.length > 0) {
                             dataset = self.formatData(generalData, xStatistic, yStatistic, reversed);
                             generalSeriesData = dataset[0];
                             xAxisMax = dataset[1];
                             yAxisMax = dataset[2];
 
+/*
                             this.chartInst.addSeries({
                                 data: generalSeriesData
                             });
+*/
                         } else if (resultData.length > 0) {
                             // If no restrictions in place, get data with general data set formatting (blue and red points indicating efficiency)
                             // Get the general data series with name information and x and y axis max
@@ -488,12 +483,15 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
                             xAxisMax = dataset[1];
                             yAxisMax = dataset[2];
 
+/*
                             this.chartInst.addSeries({
                                 data: resultSeriesData
                             });
+*/
                         }
 
                         // Update x and y axis to reflect the max and min
+/*
                         this.chartInst.yAxis[0].update({
                             min: 0,
                             max: yAxisMax,
@@ -520,11 +518,46 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
 
                         this.chartInst.redraw();
                         this.chartInst.hideLoading();
+*/
+
+                        const layout = {
+                            paper_bgcolor: '#f8f7f7',
+                            plot_bgcolor: '#f8f7f7',
+                            xaxis: {
+                                title: config.statisticLabels[0],
+                                titlefont: {
+                                    family: '"Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif',
+                                    size: 12,
+                                    color: '#707070'
+                                },
+                                zerolinecolor: '#d8d8d8',
+                                dtick: Math.ceil(xAxisMax / 4),
+                                range: [-0.5, xAxisMax * 1.01]
+                            },
+                            yaxis: {
+                                title: config.statisticLabels[1],
+                                titlefont: {
+                                    family: '"Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif',
+                                    size: 12,
+                                    color: '#707070'
+                                },
+                                zerolinecolor: '#d8d8d8',
+                                dtick: Math.ceil(yAxisMax / 4),
+                                range: [-0.5, yAxisMax * 1.01]
+                            },
+                            showlegend: false,
+                            margin: {
+                                t: 0,
+                                b: 55,
+                                r: 25
+                            }
+                        };
+
+                        document.getElementById(config.analytic + 'Chart').innerHTML = '';
+
+                        const data = [];
+                        Plotly.newPlot(config.analytic + 'Chart', data, layout, { displayModeBar: false });
                     } else {
-                        if (this.chartInst) {
-                            this.chartInst.destroy();
-                            this.chartInst = null;
-                        }
                         document.getElementById(config.analytic + 'Chart').innerHTML = "<div class='analyticInfoError'> No data available during this time frame for this analytic.";
                     }
                 }
@@ -588,8 +621,8 @@ XDMoD.Module.Efficiency = Ext.extend(XDMoD.PortalModule, {
                             start_date: Ext.getCmp('efficiency').getDurationSelector().getStartDate(),
                             end_date: Ext.getCmp('efficiency').getDurationSelector().getEndDate(),
                             order_by: {
-                                field: analytics[j].field,
-                                dirn: 'asc'
+                                field: analytics[j].statistics[1],
+                                dirn: 'desc'
                             },
                             filters: [],
                             mandatory_filters: analytics[j].mandatoryFilters,
